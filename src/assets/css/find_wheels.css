@@ -1,0 +1,371 @@
+/* .widget-find-wheels {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+     overflow: hidden; 
+} */
+
+.widget-find-wheels_containt{
+    max-width: 656px;
+}
+.widget-find-wheels_containt-top {
+    position: relative;
+    height: 12em;
+     overflow: hidden; 
+   /*  background-color: #146AEA;
+ */
+}
+
+.widget-find-wheels_containt-top div {
+
+    position: absolute;
+    color: white;
+    font-weight: 600;
+    margin-top: 2%;
+
+}
+
+
+
+
+.widget-find-wheels_containt-top img {
+
+    position: absolute;
+    bottom: -210px;
+    left: 0;
+    width: 368px;
+    border: 0;
+  
+
+}
+
+.wheels-containt-text {
+
+    top: 3.5em;
+    right: 0;
+    bottom: 0;
+    left: 2em;
+    position: absolute;
+    text-align: center;
+    color: white;
+
+
+}
+
+.widget-find-wheels_containt-top span {
+
+    position: absolute;
+    top: 55px;
+    right: 0;
+    left: 0;
+    display: inline-block !important;
+    height: 12em;
+    width: 15.375em;
+    margin: 0 auto;
+    transform-origin: bottom center;
+    transition: color .3s;
+}
+
+.widget-find-wheels_containt-top span:nth-of-type(1) {
+    rotate: 335deg;
+
+}
+
+.widget-find-wheels_containt-top span:nth-of-type(2) {
+    rotate: 342deg;
+
+}
+
+.widget-find-wheels_containt-top span:nth-of-type(3) {
+    rotate: 347deg;
+
+}
+
+.widget-find-wheels_containt-top span:nth-of-type(4) {
+    rotate: 4deg;
+/*     top: 18px;
+    left: 15px; */
+
+}
+
+.widget-find-wheels_containt-top span:nth-of-type(5) {
+    rotate: 359deg;
+/*     top: 18px;
+    left: 48px; */
+}
+
+.widget-find-wheels_containt-top span:nth-of-type(6) {
+    rotate: 28deg;
+/*     top: 4px; */
+}
+
+.widget-find-wheels_containt-top span:nth-of-type(7) {
+    rotate: 36deg;
+   /*  top: -.1px; */
+}
+
+.widget-find-wheels-input-block {
+
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden; 
+    margin-top: 1em;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+    background-color: white;
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 8px;
+    position: relative;
+    top: -30px;
+    
+
+}
+
+.input-block {
+
+    display: flex;
+    flex-direction: column;
+    max-width: 150px;
+    /* la taille varie entre 92px et 150px */
+    width: clamp(75px, 5vw, 150px);
+
+    padding: 1em;
+    align-items: center;
+    
+    
+
+
+}
+
+.border-right {
+
+    border-right: 1px solid #b1adad;
+}
+
+.wheels-btn-action {
+
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1em;
+    align-items: center;
+    justify-content: center;
+    background-color: #146AEA;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    color: white;
+    font-weight: 700;
+    border-radius: 5px;
+    max-width: 80%;
+    margin: 0 auto;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+
+.wheels-btn-action-orange {
+
+    background-color: #FFA500;
+}
+
+
+
+.input-block h4 {
+
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    font-weight: regular;
+    color: black;
+}
+
+.input-block select {
+
+    font-size: 24px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.5);
+    border: none;
+    margin-top: 5px;
+    width: 100%;
+    text-align: center;
+
+    /* for Firefox */
+    -moz-appearance: none;
+    /* for Chrome */
+    -webkit-appearance: none;
+
+
+}
+
+/* remove arow select */
+.input-block select::-ms-expand {
+    display: none;
+}
+
+.before_circle::before{
+    position: absolute;
+    border: #00FF00 2px solid;
+    content: "";
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-color: #00ff0000;
+    border-radius: 50%;
+    top: -10px;
+   left: 110px;
+
+}
+
+/* filter css */
+
+/* btn section */
+.whell-filter-open-icon{
+
+    color: black;
+    cursor: pointer;
+    /* fixe size text */
+    font-size: 1em;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.whell-filter-open-icon img{
+    width: 32px;
+    height: auto;
+
+}
+
+.whell-filter-open-icon:hover{
+    color: #146AEA;
+    filter: invert(29%) sepia(99%) saturate(2066%) hue-rotate(206deg) brightness(93%) contrast(97%);
+
+}
+
+/* block filter visibility*/
+.filter-hiden{
+    display: none;
+}
+
+.filter-show{
+    display: flex;
+}
+
+/* filter block style*/
+.filter_block{
+
+
+    flex-direction: column;
+    height: fit-content;
+    border: 2px solid #b1adad81;
+    padding: 8px;
+   
+}
+
+.input-filter-block{
+    
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        margin-bottom: 8px;
+}
+
+.input-filter-block input[type='checkbox']{
+   /* size checkbox */
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+
+}
+
+.input-filter-block label{
+    font-size: 1em;
+    font-weight: 600;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+
+
+/* secren size superieure a 414 */
+@media screen and (min-width: 414px) {
+
+  .normal-search-by-dimensions{
+    margin: 0!important;
+    width: 100%;
+    height: 100%;
+  }
+
+  .normal-search-picture{
+    position: inherit!important;    
+    display: block;
+   justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 0!important;
+  
+  }
+  .widget-find-wheels_containt-top img{
+
+    position: relative;
+    display: block;
+    bottom:-100px;
+   margin: 0 auto;
+  
+  }
+
+  .widget-find-wheels_containt-top span{
+    top: 37px;
+  }
+
+  .widget-find-wheels_containt-top span:nth-of-type(1) {
+    rotate: 323deg;
+
+    }
+
+    .widget-find-wheels_containt-top span:nth-of-type(2) {
+        rotate: 330deg;
+
+    }
+
+    .widget-find-wheels_containt-top span:nth-of-type(3) {
+        rotate: 336deg;
+
+    }
+
+    .widget-find-wheels_containt-top span:nth-of-type(4) {
+        rotate: 352deg;
+         top: 43px;
+      /*  left: 15px; */
+
+    }
+
+    .widget-find-wheels_containt-top span:nth-of-type(5) {
+        rotate: 357deg;
+        top: 43px;
+      /*  left: 48px; */
+    }
+
+    .widget-find-wheels_containt-top span:nth-of-type(6) {
+        rotate: 13deg;
+        top: 51px; 
+    }
+
+    .widget-find-wheels_containt-top span:nth-of-type(7) {
+        rotate: 19deg;
+      top: 51px; 
+    }
+  
+    .input-block{
+        background-color: white;
+    }
+
+
+}

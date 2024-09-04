@@ -1,0 +1,32 @@
+@import url("wheels_product_card.css");
+
+.brands-List-containt{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /* define distance element */
+    gap: 20px;
+}
+
+.brands-List-containt-item{
+    width: fit-content;
+    height: fit-content;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.brands-List-containt-item img{
+    width: 192px;
+    height: 96px;
+    margin: 0px;
+    object-fit: contain;
+}
+
+.random-pneu-selection-containt{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+    flex-direction: row;
+}

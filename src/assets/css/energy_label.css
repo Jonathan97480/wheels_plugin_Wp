@@ -1,0 +1,94 @@
+/* Conteneur principal de l'étiquette énergétique */
+.energy-label {
+    
+  
+    font-family: Arial, sans-serif;
+  
+ 
+  
+}
+
+/* Section de l'efficacité énergétique */
+.energy-label .efficiency {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.energy-label .efficiency .grade {
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    line-height: 25px;
+    margin-right: 10px;
+}
+
+.energy-label .efficiency .grade.a { background-color: #00a651; }
+.energy-label .efficiency .grade.b { background-color: #a7d04e; }
+.energy-label .efficiency .grade.c { background-color: #f6eb14; }
+.energy-label .efficiency .grade.d { background-color: #f4ab2d; }
+.energy-label .efficiency .grade.e { background-color: #ef8129; }
+.energy-label .efficiency .grade.f { background-color: #eb4b26; }
+.energy-label .efficiency .grade.g { background-color: #e31e25; }
+
+/* Section de l'adhérence sur sol mouillé */
+.energy-label .wet-grip {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.energy-label .wet-grip .grade {
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    line-height: 25px;
+    margin-right: 10px;
+}
+
+.energy-label .wet-grip .grade.a { background-color: #00a651; }
+.energy-label .wet-grip .grade.b { background-color: #a7d04e; }
+.energy-label .wet-grip .grade.c { background-color: #f6eb14; }
+.energy-label .wet-grip .grade.d { background-color: #f4ab2d; }
+.energy-label .wet-grip .grade.e { background-color: #ef8129; }
+.energy-label .wet-grip .grade.f { background-color: #eb4b26; }
+.energy-label .wet-grip .grade.g { background-color: #e31e25; }
+
+/* Section du niveau sonore */
+.energy-label .noise {
+    display: flex;
+    align-items: center;
+}
+
+.energy-label .noise .level {
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    line-height: 25px;
+    margin-right: 10px;
+}
+
+.energy-label .noise .level-1 { background-color: #00a651; }
+.energy-label .noise .level-2 { background-color: #f6eb14; }
+.energy-label .noise .level-3 { background-color: #e31e25; }
+
+.energy-label .noise .decibel {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+}
+
+/* Styles additionnels */
+.energy-label .title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: center;
+    color: #000;
+}

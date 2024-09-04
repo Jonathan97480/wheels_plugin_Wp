@@ -1,0 +1,19 @@
+.panel-heading{
+    margin-bottom: 16px;
+}
+
+.bran-wheels-list-header img{
+   
+    height: 157px;
+    width: auto;
+    object-fit: cover;
+
+}
+
+.bran-wheels-list-containt{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-top: 20px;
+    gap: 20px;
+}

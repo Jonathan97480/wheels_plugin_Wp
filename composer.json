@@ -1,0 +1,18 @@
+{
+    "name": "berou/jon_dev_wheel_check",
+    "type": "wordpress-plugin",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Berou\\JonDevWheelCheck\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jonathan97480",
+            "email": "jonathanfrt97480@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

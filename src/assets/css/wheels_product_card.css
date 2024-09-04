@@ -1,0 +1,157 @@
+.wheels-product-card {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    gap: 8px;
+    width: 235px;
+    height: 521px;
+    max-width: 521px;
+    /*   max-height: 538px; */
+    overflow: hidden;
+
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    padding: 8px;
+    border-radius: 5px;
+
+}
+
+.wheels-product-card-img {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.card-wheel-img {
+    width: 167px;
+    height: auto;
+    object-fit: fill;
+}
+
+.card-brand-img {
+    width: 100px;
+    height: auto;
+    margin: 0px;
+    object-fit: contain;
+}
+
+.wheels-product-card-icons {
+    display: flex;
+
+    justify-content: flex-start;
+    gap: 10px;
+    /*     margin-top: 10px;
+    margin-bottom: 10px; */
+}
+
+.wheels-product-card-icons img {
+    width: 13px;
+    height: auto;
+    margin: 0px;
+    object-fit: contain;
+}
+
+.wheels-product-card-icons div,
+.wheels-product-card-icons div div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    gap: 10px;
+}
+
+.card-model-wheels {
+    display: block;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+    height: 54px;
+    max-height: 54px;
+    overflow: hidden;
+}
+
+.card-wheels-dimension {
+    font-size: 15px;
+    font-weight: regular;
+    color: #000;
+    text-align: left;
+}
+
+.card-wheel-product-price {
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+    text-align: left;
+}
+
+.wheels-product-card-btn {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.card-btn,
+.card-btn-orange {
+    background-color: blue;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    max-width: 80%;
+    width: 151.19px;
+
+}
+
+.card-btn-orange {
+    background-color: #FFA500;
+}
+
+.add_card_wheel_in {
+    background-color: initial;
+    color: blue;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.wheel_card_loader_hiden,
+.add_card_wheel_hiden {
+    display: none;
+}
+
+.wheel_card_loader_show {
+    display: block;
+    width: 45px;
+    height: auto;
+    /* play animation */
+    animation: spin 1s linear infinite;
+
+}
+
+/* Animation loader */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.wheel_stock_out {
+    color: red;
+    font-size: 16px;
+    font-weight: 700;
+}
