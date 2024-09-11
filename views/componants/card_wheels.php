@@ -49,7 +49,7 @@ function generateCardWheel($wheel, $files): string
         <div class="card-model-wheels">
             <a href="<?= $url . 'informations-sur-le-pneu?id=' . $wheel->id  ?>">
                 <?=
-                $brand->brand_name  . ' ' . $wheel->wheel_width . '/' . $wheel->wheel_height . ' R' . $wheel->wheel_diameter . ' ' . $wheel->wheel_lad_index . ' ' . $wheel->wheel_speed . ' ' .  $wheel->wheel_profile
+                $wheel->wheel_model
                 ?>
             </a>
         </div>
@@ -87,7 +87,7 @@ function generateCardWheel($wheel, $files): string
                 e.preventDefault();
 
                 var product_id = $(this).data('product-id'); // ID du produit à ajouter au panier
-                var quantity = 1; // Quantité à ajouter
+                var quantity = 2; // Quantité à ajouter
                 const btnAddToCart = document.getElementById('btn-add-wheels-cart' + product_id);
                 const btnShowCart = document.getElementById('btn-show-cart' + product_id);
                 const loader = document.getElementById('loader' + product_id);

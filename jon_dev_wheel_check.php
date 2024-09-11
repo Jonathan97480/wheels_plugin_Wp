@@ -1,6 +1,6 @@
 <?php
 /* 
-Plugin Name: Jon Dev Wheel Check
+Plugin Name: Wheel Check
 Plugin URI: https://site.jon-dev.fr/plugin/jon_dev_weel_check
 Description: A simple plugin to check the weel details
 Version: 1.0

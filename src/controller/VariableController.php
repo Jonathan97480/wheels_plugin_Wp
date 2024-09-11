@@ -389,7 +389,7 @@ class VariableController
      * @param WC_Product $product
      * @return int|WP_Error
      */
-    function generate_product_for_woocomerce($post,  $product)
+    function generate_product_for_woocomerce($post,  $product, $model)
     {
 
         $idCat = $this->get_wc_categories($post['VehicleType'])[0]->term_id;
@@ -398,7 +398,7 @@ class VariableController
         if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
             //create product in woocommerce
 
-            $product->set_name($post['modelName']);
+            $product->set_name($model);
             $product->set_status('publish');
             $product->set_catalog_visibility('visible');
             $product->set_description($_POST['description']);
@@ -427,7 +427,6 @@ class VariableController
     public static function check_fields_required_completed($data)
     {
         $fields = [
-            'modelName',
             'upload_image_id',
             'price',
             'width',
@@ -478,5 +477,38 @@ class VariableController
         } else {
             return false;
         }
+    }
+
+
+    /**
+     * Undocumented function
+     * retur Tinymce editor wordpress custom
+     * @param [type] $_content
+     * @param [type] $_id
+     * @param [type] $_name
+     * @return string
+     */
+    function custom_plugin_text_editor($_content, $_id, $_name): string
+    {
+        // Définissez le contenu par défaut à afficher dans l'éditeur
+        $content = $_content;
+
+        // Définissez l'ID de l'éditeur de texte
+        $editor_id = $_id;
+
+        // Définissez les paramètres de l'éditeur
+        $settings = array(
+            'textarea_name' => $_name,  // Le nom de la variable envoyée dans POST
+            'media_buttons' => true,  // Affiche les boutons "Ajouter un média"
+            'textarea_rows' => 10,    // Le nombre de lignes de l'éditeur
+            'teeny'         => false, // Utilise une version plus simplifiée de TinyMCE
+            'quicktags'     => true   // Active les balises rapides (boutons HTML)
+        );
+
+
+        ob_start();
+        // Affiche l'éditeur
+        wp_editor($content, $editor_id, $settings);
+        return ob_get_clean();
     }
 }

@@ -30,6 +30,10 @@ class JonDevWheel
             $adminController =  new AdminController();
 
             add_action('admin_enqueue_scripts', array($this, 'shapeSpace_load_wp_media_files'));
+
+            add_action('admin_menu', function () {
+                add_menu_page('Custom Editor', 'Custom Editor', 'manage_options', 'custom-editor', 'my_custom_plugin_text_editor');
+            });
         }
     }
 
@@ -38,7 +42,10 @@ class JonDevWheel
 
         wp_enqueue_script('jon_dev_wheel_check', plugin_dir_url(__FILE__) . 'assets/js/apiFront.js', ['jquery'], '1.0', true);
         wp_localize_script('jon_dev_wheel_check', 'jon_dev_api_url', [
-            'url' => rest_url('')
+            'url' => rest_url(''),
+            'plugin_url' => plugin_dir_url(__FILE__),
+            'admin_url' => admin_url('admin.php?page=update_wheel'),
+
         ]);
 
         // Add all shortcode

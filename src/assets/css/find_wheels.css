@@ -1,17 +1,25 @@
-/* .widget-find-wheels {
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-     overflow: hidden; 
-} */
 
-.widget-find-wheels_containt{
+.alert-no-result {
+    background-color: #f1b7bc;
+    border-color: #f5c6cb;
+    color: #ffffff;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    font-size: 2rem;
+    font-weight: 700;
+
+}
+.widget-find-wheels_containt {
     max-width: 656px;
 }
+
 .widget-find-wheels_containt-top {
     position: relative;
     height: 12em;
-     overflow: hidden; 
-   /*  background-color: #146AEA;
+    overflow: hidden;
+    /*  background-color: #146AEA;
  */
 }
 
@@ -29,12 +37,16 @@
 
 .widget-find-wheels_containt-top img {
 
-    position: absolute;
-    bottom: -210px;
-    left: 0;
+   /*  position: absolute; */
+/*     bottom: -210px; */
+   /*  left: 0;
     width: 368px;
-    border: 0;
-  
+    border: 0; */
+
+    position: relative;
+    display: block;
+    bottom: -100px;
+    margin: 0 auto;
 
 }
 
@@ -82,32 +94,32 @@
 
 .widget-find-wheels_containt-top span:nth-of-type(4) {
     rotate: 4deg;
-/*     top: 18px;
+    /*     top: 18px;
     left: 15px; */
 
 }
 
 .widget-find-wheels_containt-top span:nth-of-type(5) {
     rotate: 359deg;
-/*     top: 18px;
+    /*     top: 18px;
     left: 48px; */
 }
 
 .widget-find-wheels_containt-top span:nth-of-type(6) {
     rotate: 28deg;
-/*     top: 4px; */
+    /*     top: 4px; */
 }
 
 .widget-find-wheels_containt-top span:nth-of-type(7) {
     rotate: 36deg;
-   /*  top: -.1px; */
+    /*  top: -.1px; */
 }
 
 .widget-find-wheels-input-block {
 
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    overflow: hidden; 
+    overflow: hidden;
     margin-top: 1em;
     display: flex;
     flex-direction: row;
@@ -119,7 +131,7 @@
     margin-bottom: 8px;
     position: relative;
     top: -30px;
-    
+
 
 }
 
@@ -133,8 +145,8 @@
 
     padding: 1em;
     align-items: center;
-    
-    
+
+
 
 
 }
@@ -205,7 +217,7 @@
     display: none;
 }
 
-.before_circle::before{
+.before_circle::before {
     position: absolute;
     border: #00FF00 2px solid;
     content: "";
@@ -215,14 +227,14 @@
     background-color: #00ff0000;
     border-radius: 50%;
     top: -10px;
-   left: 110px;
+    left: 110px;
 
 }
 
 /* filter css */
 
 /* btn section */
-.whell-filter-open-icon{
+.whell-filter-open-icon {
 
     color: black;
     cursor: pointer;
@@ -233,56 +245,56 @@
     margin-bottom: 8px;
 }
 
-.whell-filter-open-icon img{
+.whell-filter-open-icon img {
     width: 32px;
     height: auto;
 
 }
 
-.whell-filter-open-icon:hover{
+.whell-filter-open-icon:hover {
     color: #146AEA;
     filter: invert(29%) sepia(99%) saturate(2066%) hue-rotate(206deg) brightness(93%) contrast(97%);
 
 }
 
 /* block filter visibility*/
-.filter-hiden{
+.filter-hiden {
     display: none;
 }
 
-.filter-show{
+.filter-show {
     display: flex;
 }
 
 /* filter block style*/
-.filter_block{
+.filter_block {
 
 
     flex-direction: column;
     height: fit-content;
     border: 2px solid #b1adad81;
     padding: 8px;
-   
+
 }
 
-.input-filter-block{
-    
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        margin-bottom: 8px;
+.input-filter-block {
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-bottom: 8px;
 }
 
-.input-filter-block input[type='checkbox']{
-   /* size checkbox */
+.input-filter-block input[type='checkbox'] {
+    /* size checkbox */
     width: 40px;
     height: 40px;
     margin-right: 8px;
 
 }
 
-.input-filter-block label{
+.input-filter-block label {
     font-size: 1em;
     font-weight: 600;
     color: black;
@@ -290,43 +302,44 @@
     padding: 0;
 }
 
+.widget-find-wheels select:hover {
+    cursor: pointer;
 
 
+}
 
 
-/* secren size superieure a 414 */
-@media screen and (min-width: 414px) {
-
-  .normal-search-by-dimensions{
-    margin: 0!important;
-    width: 100%;
-    height: 100%;
-  }
-
-  .normal-search-picture{
-    position: inherit!important;    
+.normal-search-picture {
+    position: inherit !important;
     display: block;
-   justify-content: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
-    margin: 0!important;
-  
-  }
-  .widget-find-wheels_containt-top img{
+    margin: 0 !important;
+
+}
+.widget-find-wheels_containt-top img {
 
     position: relative;
     display: block;
-    bottom:-100px;
-   margin: 0 auto;
-  
-  }
+    bottom: -100px;
+    margin: 0 auto;
 
-  .widget-find-wheels_containt-top span{
-    top: 37px;
-  }
+}
+.normal-search-by-dimensions {
+    margin: 0 !important;
+    width: 100%;
+    height: 100%;
+}
+/* secren size superieure a 414 */
+@media screen and (min-width: 414px) {
 
-  .widget-find-wheels_containt-top span:nth-of-type(1) {
-    rotate: 323deg;
+    .widget-find-wheels_containt-top span {
+        top: 37px;
+    }
+
+    .widget-find-wheels_containt-top span:nth-of-type(1) {
+        rotate: 323deg;
 
     }
 
@@ -342,28 +355,28 @@
 
     .widget-find-wheels_containt-top span:nth-of-type(4) {
         rotate: 352deg;
-         top: 43px;
-      /*  left: 15px; */
+        top: 43px;
+        /*  left: 15px; */
 
     }
 
     .widget-find-wheels_containt-top span:nth-of-type(5) {
         rotate: 357deg;
         top: 43px;
-      /*  left: 48px; */
+        /*  left: 48px; */
     }
 
     .widget-find-wheels_containt-top span:nth-of-type(6) {
         rotate: 13deg;
-        top: 51px; 
+        top: 51px;
     }
 
     .widget-find-wheels_containt-top span:nth-of-type(7) {
         rotate: 19deg;
-      top: 51px; 
+        top: 51px;
     }
-  
-    .input-block{
+
+    .input-block {
         background-color: white;
     }
 

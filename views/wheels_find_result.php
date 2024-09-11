@@ -45,8 +45,20 @@ $result_find = $databaseController->find_wheels_by_widget(
             'Faire une autre Recherche'
         );
         echo $widget;
+
         ?>
         <h3>Résultat de la recherche </h3>
+        <?php
+        if (count($result_find) <= 0) {
+        ?>
+            <div class="alert-no-result" role="alert">
+                Aucun résultat trouvé
+            </div>
+        <?php
+            return;
+        }
+
+        ?>
         <div class="bran-wheels-list">
             <div class="bran-wheels-list-containt">
                 <?php
@@ -58,12 +70,12 @@ $result_find = $databaseController->find_wheels_by_widget(
             </div>
         </div>
     </div>
-
-    <!-- css -->
-    <style>
-        .bran-wheels-list-containt {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-        }
-    </style>
+</div>
+<!-- css -->
+<style>
+    .bran-wheels-list-containt {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+</style>

@@ -1,0 +1,86 @@
+.jon_dev_table_admin {
+    width: 100%;
+    max-width: 1920px;
+    margin: auto;
+
+}
+
+.jon_dev_table_admin th {
+    text-align: left;
+    width: 10%;
+
+
+}
+
+.jon_dev_table_admin td {
+    text-align: left;
+    padding-right: 30px;
+
+
+}
+
+.jon_dev_table_admin tr {
+    line-height: 40px;
+}
+
+.jon_dev_table_admin select {
+    width: 100%;
+}
+
+
+
+
+
+.jon_dev_table_admin input[type="text"],
+.jon_dev_table_admin input[type="number"],
+.jon_dev_table_admin select {
+    width: 100%;
+}
+
+/**submit type */
+.jon_dev_table_admin input[type="submit"] {
+    margin-top: 20px;
+
+}
+
+.jon_dev_table_admin_list th {
+    text-align: center;
+}
+
+.brand_Delete_Btn {
+    color: red;
+    cursor: pointer;
+}
+
+.brand_Edit_Btn {
+    color: blue;
+    cursor: pointer;
+}
+
+.text_table_wheel th {
+    width: 10%;
+}
+
+.fa-check,
+.fa-uncheck {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fa-check img,
+.fa-uncheck img {
+    width: 20px;
+    height: 20px;
+}
+
+.fa-check img {
+    /* filter green */
+    filter: invert(56%) sepia(62%) saturate(540%) hue-rotate(71deg) brightness(101%) contrast(84%);
+
+}
+
+.fa-uncheck img {
+    /* filter red */
+    filter: invert(32%) sepia(79%) saturate(1614%) hue-rotate(344deg) brightness(91%) contrast(98%);
+}

@@ -25,10 +25,10 @@ $curentPage = $result['page'];
 
 $notifications = [];
 
+$url_plugin = plugin_dir_url(__DIR__);
 
 
-
-if (isset($_POST['modelName']) && isset($_POST['VehicleType'])) {
+if (isset($_POST['height']) && isset($_POST['VehicleType'])) {
 
 
 
@@ -39,9 +39,11 @@ if (isset($_POST['modelName']) && isset($_POST['VehicleType'])) {
             'message' => 'Veuillez remplir les champs obligatoires marqués par *'
         ]);
     } else {
+        $brandName = $databaseController->get_brand_by_id($_POST['brand'])[0]->brand_name;
+        $model = $brandName . ' ' . $_POST['width'] . '/' . $_POST['height'] . 'R' . $_POST['diameter'] . ' ' . $_POST['loadIndex'] . $_POST['speed'] . ' ' . $_POST['profile'];
 
         //verifier si le produit existe deja
-        $productExist = $databaseController->get_pneu_by_model($_POST['modelName']);
+        $productExist = $databaseController->get_pneu_by_model($model);
         //verifi si la tableau contient des elements
         if (count($productExist) > 0) {
             array_push($notifications, [
@@ -51,7 +53,7 @@ if (isset($_POST['modelName']) && isset($_POST['VehicleType'])) {
         } else {
 
 
-            $idProductWc = $variableController->generate_product_for_woocomerce($_POST, new WC_Product());
+            $idProductWc = $variableController->generate_product_for_woocomerce($_POST, new WC_Product(), $model);
             if (!is_int($idProductWc)) {
                 array_push($notifications, [
                     'success' => false,
@@ -59,9 +61,10 @@ if (isset($_POST['modelName']) && isset($_POST['VehicleType'])) {
                 ]);
             } else {
 
+
                 $data = [
                     'wheel_guarantee' => $_POST['wheelGuarantee'],
-                    'wheel_model' => $_POST['modelName'],
+                    'wheel_model' => $model,
                     'wheel_category' => $_POST['VehicleType'],
                     'wheel_subcategory' => $_POST['subCategory'],
                     'wheel_dimension' => $_POST['width'] . '/' . $_POST['height'] . 'R' . $_POST['diameter'] . ' ' . $_POST['loadIndex'] . $_POST['speed'],
@@ -84,7 +87,7 @@ if (isset($_POST['modelName']) && isset($_POST['VehicleType'])) {
                     'wheel_noise_level' => $_POST['noiseLevel'],
                     'wheel_woocommerce_product_id' => $idProductWc,
                     'wheel_brand_id' => $_POST['brand'],
-                    'wheel_price' => $_POST['price'],
+                    'wheel_price' => floatval($_POST['price']),
                     'wheel_picture_id' => $_POST['upload_image_id'],
                 ];
                 $productId =  $databaseController->add_pneu($data);
@@ -109,12 +112,18 @@ if (isset($_POST['modelName']) && isset($_POST['VehicleType'])) {
 //admin vue
 ?>
 <div class="wrap">
+    <link rel="stylesheet" href="<?= $url_plugin . 'src/assets/css/admin/add_wheel.css' ?>">
+    <script src="<?= $url_plugin . 'src/assets/js/admin/add_wheel.js' ?>"></script>
     <?php foreach ($notifications as $notification) : ?>
         <div class="notice notice-<?php echo $notification['success'] ? 'success' : 'error'; ?> is-dismissible">
             <p><?php echo $notification['message']; ?></p>
         </div>
     <?php endforeach; ?>
     <h1>Jon Dev Wheel Check</h1>
+
+    <input type="hidden" name="curent_page" value="<?= $curentPage ?>" id="curentP">
+    <input type="hidden" name="total_page" value="<?= $totalPage ?>" id="totalP">
+
     <section>
         <h2>Ajouter un modèle de pneu</h2>
         <form method="post" action="">
@@ -122,12 +131,12 @@ if (isset($_POST['modelName']) && isset($_POST['VehicleType'])) {
                 <tbody>
                     <tr>
 
-                        <th>
+                        <!--    <th>
                             <label for="modelName">Nom du modèle *</label>
                         </th>
                         <td>
                             <input type="text" name="modelName" id="modelName" required>
-                        </td>
+                        </td> -->
 
                         <th>
                             <label for="wheelGuarantee">Garantie</label>
@@ -221,7 +230,7 @@ if (isset($_POST['modelName']) && isset($_POST['VehicleType'])) {
                             <label for="price">Prix *</label>
                         </th>
                         <td>
-                            <input type="number" name="price" id="price" required>
+                            <input type="text" name="price" id="price" pattern="^\d+([,.]\d+)?$" placeholder="Ex : 12,34" required>
                         </td>
                     </tr>
                     <tr>
@@ -280,13 +289,13 @@ if (isset($_POST['modelName']) && isset($_POST['VehicleType'])) {
                             <input type="checkbox" name="runflat" id="runflat">
                         </td>
                         <th>
-                            <label for="use">Usagés</label>
+                            <label for="use">Usage</label>
                         </th>
                         <td>
                             <input type="text" name="use" id="use">
                         </td>
                         <th>
-                            <label for="winterMark">Marquage hiver</label>
+                            <label for="winterMark">Voiture électrique</label>
                         </th>
                         <td>
                             <input type="checkbox" name="winterMark" id="winterMark">
@@ -362,32 +371,45 @@ if (isset($_POST['modelName']) && isset($_POST['VehicleType'])) {
                     </tr>
                     <tr>
                         <th>
-                            <label for="description">Description du pneu *</label>
-                        </th>
-                        <td>
-                            <textarea name="description" id="description" cols="30" rows="10" required></textarea>
-                        </td>
-                        <th>
-                            <label for="shortDescription">Description courte *</label>
-                        </th>
-                        <td>
-                            <textarea name="shortDescription" id="shortDescription" cols="30" rows="10" required></textarea>
-                        </td>
-                        <th>
                             <label for="quantity">Quantité en stock *</label>
                         </th>
                         <td>
                             <input type="number" name="quantity" id="quantity" required>
                         </td>
-
                     </tr>
-
-                    <input type="submit" value="Ajouter" class="button action">
                 </tbody>
 
             </table>
+            <table class="text_table_wheel">
+                <tbody>
+                    <tr>
+                        <th>
+                            <label for="description">Description du pneu *</label>
+                        </th>
+                        <td>
+                            <?php echo $variableController->custom_plugin_text_editor('', "description", "description") ?>
+
+                        </td>
 
 
+
+                    </tr>
+                    <tr>
+                        <th>
+                            <label for="shortDescription">Description courte *</label>
+                        </th>
+                        <td>
+                            <?php echo $variableController->custom_plugin_text_editor('', "shortDescription", "shortDescription") ?>
+
+                        </td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+
+
+            <input type="submit" value="Ajouter" class="button action">
         </form>
     </section>
     <section>
@@ -417,7 +439,7 @@ if (isset($_POST['modelName']) && isset($_POST['VehicleType'])) {
                     <th class="manage-column column-xl" id="xl" scope="col">XL</th>
                     <th class="manage-column column-runflat" id="runflat" scope="col">Runflat</th>
                     <th class="manage-column column-use" id="use" scope="col">Usagés</th>
-                    <th class="manage-column column-winter_mark" id="winter_mark" scope="col">Marquage hiver</th>
+                    <th class="manage-column column-winter_mark" id="winter_mark" scope="col">Voiture électrique</th>
                     <th class="manage-column column-mountain_law" id="mountain_law" scope="col">Loi Montagne</th>
                     <th class="manage-column column-fuel_efficiency" id="fuel_efficiency" scope="col">Efficacite carburant</th>
                     <th class="manage-column column-ground_adhesion" id="ground_adhesion" scope="col">Adhérence sur sol</th>
@@ -462,370 +484,3 @@ if (isset($_POST['modelName']) && isset($_POST['VehicleType'])) {
 
     </section>
 </div>
-
-<!-- css -->
-<style>
-    .jon_dev_table_admin {
-        width: 100%;
-        max-width: 1920px;
-        margin: auto;
-
-    }
-
-    .jon_dev_table_admin th {
-        text-align: left;
-        width: 10%;
-
-
-    }
-
-    .jon_dev_table_admin td {
-        text-align: left;
-        padding-right: 30px;
-
-
-    }
-
-    .jon_dev_table_admin tr {
-        line-height: 40px;
-    }
-
-    .jon_dev_table_admin select {
-        width: 100%;
-    }
-
-
-
-
-
-    .jon_dev_table_admin input[type="text"],
-    .jon_dev_table_admin input[type="number"],
-    .jon_dev_table_admin select {
-        width: 100%;
-    }
-
-    /**submit type */
-    .jon_dev_table_admin input[type="submit"] {
-        margin-top: 20px;
-
-    }
-
-    .jon_dev_table_admin_list th {
-        text-align: center;
-    }
-
-    .brand_Delete_Btn {
-        color: red;
-        cursor: pointer;
-    }
-
-    .brand_Edit_Btn {
-        color: blue;
-        cursor: pointer;
-    }
-</style>
-
-<!-- js -->
-<script>
-    jQuery(document).ready(function($) {
-        const URLBASE = jon_dev_api_url.url;
-
-
-
-        var custom_uploader;
-        $('#upload_image_button').click(function(e) {
-            e.preventDefault();
-            if (custom_uploader) {
-                custom_uploader.open();
-                return;
-            }
-            custom_uploader = wp.media.frames.file_frame = wp.media({
-                multiple: false,
-                library: {
-                    type: 'image'
-                },
-                button: {
-                    text: 'Select Image'
-                },
-                title: 'Select an image or enter an image URL.',
-            });
-            custom_uploader.on('select', function() {
-                console.log(custom_uploader.state().get('selection').toJSON());
-                attachment = custom_uploader.state().get('selection').first().toJSON();
-                console.log(attachment);
-                $('#upload_image').val(attachment.url);
-                $('#upload_image_id').val(attachment.id);
-            });
-            custom_uploader.open();
-        });
-
-
-
-
-
-        //pagination
-        const nextPage = document.getElementById('next-page');
-        const lastPage = document.getElementById('last-page');
-
-        const firstPage = document.getElementById('first-page');
-        const prevPage = document.getElementById('prev-page');
-
-
-        const pageSlector = document.getElementById("current-page-selector");
-        const displayCurrentPage = document.querySelector('.displaying-num');
-        const displayTotalPage = document.getElementById('display_total_page_enum');
-        const URLFETCH = URLBASE + 'jon_dev_wheel_check/v1/get_wheels';
-        let currentPage = <?= $curentPage ?>;
-        let totalPage = <?= $totalPage ?>;
-        displayCurrentPage.textContent = currentPage + ' éléments';
-        displayTotalPage.textContent = totalPage;
-
-        nextPage.addEventListener('click', function(e) {
-            e.preventDefault();
-            if (currentPage < totalPage) {
-                currentPage++;
-                pageSlector.value = currentPage;
-                fetch(URLFETCH + '?page=' + currentPage + '&limit=10')
-                    .then(response => response.json())
-                    .then(data => {
-                        data = JSON.parse(data);
-                        console.log(data);
-                        if (data.success) {
-                            generate_table(data.data);
-                        } else {
-                            console.error(data.message);
-                        }
-
-                    })
-                    .catch(error => {
-                        console.error('Error:', data.message);
-                    });
-
-
-            }
-
-        });
-
-        lastPage.addEventListener('click', function(e) {
-            e.preventDefault();
-            if (currentPage > 1) {
-                currentPage--;
-                pageSlector.value = currentPage;
-                fetch(URLFETCH + '?page=' + currentPage + '&limit=10')
-                    .then(response => response.json())
-                    .then(data => {
-                        data = JSON.parse(data);
-                        console.log(data);
-                        if (data.success) {
-                            generate_table(data.data);
-                        } else {
-                            console.error(data.message);
-                        }
-
-                    })
-                    .catch(error => {
-                        console.error('Error:', data.message);
-                    });
-
-
-            };
-
-        });
-
-        pageSlector.addEventListener('change', function(e) {
-            e.preventDefault();
-            if (e.target.value > totalPage) {
-                if (totalPage > 0) {
-                    e.target.value = totalPage;
-                } else {
-                    e.target.value = 1;
-                }
-                return;
-            }
-            let page = e.target.value;
-            fetch(URLFETCH + '?page=' + page + '&limit=10')
-                .then(response => response.json())
-                .then(data => {
-                    data = JSON.parse(data);
-                    console.log(data);
-                    if (data.success) {
-                        generate_table(data.data);
-                    } else {
-                        console.error(data.message);
-                    }
-
-                })
-                .catch(error => {
-                    console.error('Error:', data.message);
-                });
-
-        });
-
-
-        firstPage.addEventListener('click', function(e) {
-            e.preventDefault();
-            if (currentPage > 1) {
-                currentPage = 1;
-                pageSlector.value = currentPage;
-                fetch(URLFETCH + '?page=' + currentPage + '&limit=10')
-                    .then(response => response.json())
-                    .then(data => {
-                        data = JSON.parse(data);
-                        console.log(data);
-                        if (data.success) {
-                            generate_table(data.data);
-                        } else {
-                            console.error(data.message);
-                        }
-
-                    })
-                    .catch(error => {
-                        console.error('Error:', data.message);
-                    });
-
-
-            };
-
-        });
-
-        prevPage.addEventListener('click', function(e) {
-            e.preventDefault();
-            if (currentPage > 1) {
-                currentPage--;
-                pageSlector.value = currentPage;
-                fetch(URLFETCH + '?page=' + currentPage + '&limit=10')
-                    .then(response => response.json())
-                    .then(data => {
-                        data = JSON.parse(data);
-                        console.log(data);
-                        if (data.success) {
-                            generate_table(data.data);
-                        } else {
-                            console.error(data.message);
-                        }
-
-                    })
-                    .catch(error => {
-                        console.error('Error:', data.message);
-                    });
-
-
-            };
-
-        });
-
-
-        //call api to get all wheels end start page
-        fetch(URLFETCH + '?page=' + currentPage + '&limit=10')
-            .then(response => response.json())
-            .then(data => {
-                data = JSON.parse(data);
-                console.log(data.data.data);
-                if (data.success) {
-
-                    generate_table(data.data);
-                } else {
-                    console.error(data.message);
-                }
-
-            })
-            .catch(error => {
-                console.error('Error:', data.message);
-            });
-
-
-
-
-        //regenerate table 
-        function generate_table($result) {
-            const tbody = document.getElementById('tbody_table_wheels_list');
-            tbody.innerHTML = '';
-            $result.data.forEach(pneus => {
-                tbody.innerHTML += `
-                    <tr>
-                        <td>
-                            <a class="brand_Delete_Btn" href="<?= admin_url('admin.php?page=update_wheel&id=') ?>${pneus.id}">Edit</a>
-                            <a class="brand_Edit_Btn" href="" id="${pneus.id}" class="wheel_Delete_Btn">Delete</a>
-                        </td>
-                        <td>${pneus.wheel_model}</td>
-                        <td>${pneus.wheel_guarantee}</td>
-                        <td>${pneus.wheel_season}</td>
-                        <td>${pneus.wheel_vehicle_type}</td>
-                        <td>${pneus.wheel_subcategory}</td>
-                        <td>${pneus.wheel_profile}</td>
-                        <td>${pneus.wheel_width}</td>
-                        <td>${pneus.wheel_height}</td>
-                        <td>${pneus.wheel_diameter}</td>
-                        <td>${pneus.wheel_load_index}</td>
-                        <td>${pneus.wheel_speed}</td>
-                        <td>${pneus.wheel_xl}</td>
-                        <td>${pneus.wheel_runflat}</td>
-                        <td>${pneus.wheel_use}</td>
-                        <td>${pneus.wheel_winter_mark}</td>
-                        <td>${pneus.wheel_mountain_law}</td>
-                        <td>${pneus.wheel_fuel_efficiency}</td>
-                        <td>${pneus.wheel_ground_adhesion}</td>
-                        <td>${pneus.wheel_rolling_noise}</td>
-                        <td>${pneus.wheel_noise_level}</td>
-                    </tr>
-                    `;
-            });
-
-            addEventRemoveWheel();
-
-
-
-        }
-        //delete pneu
-        function addEventRemoveWheel() {
-            var deleteBtns = document.querySelectorAll('.wheel_Delete_Btn');
-            deleteBtns.forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    let id = e.target.id;
-                    fetch(URLBASE + 'jon_dev_wheel_check/v1/remove_wheel?id=' + id)
-                        .then(response => response.json())
-                        .then(data => {
-                            data = JSON.parse(data);
-                            console.log(data);
-
-                            if (data.success) {
-                                //refresh page
-                                location.reload();
-                            } else {
-                                console.error(data.message);
-                            }
-
-                        })
-                        .catch(error => {
-                            console.error('Error:', data.message);
-                        });
-                });
-            });
-        }
-
-        //search
-
-        const searchForm = document.getElementById('wheels_chearch_form');
-        searchForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            let search = document.getElementById('search').value;
-            fetch(URLBASE + 'jon_dev_wheel_check/v1/search_wheel?search=' + search)
-                .then(response => response.json())
-                .then(data => {
-                    data = JSON.parse(data);
-                    console.log(data);
-                    if (data.success) {
-                        generate_table(data);
-                    } else {
-                        console.error(data.message);
-                    }
-
-                })
-                .catch(error => {
-                    console.error('Error:', data.message);
-                });
-        });
-
-    });
-</script>

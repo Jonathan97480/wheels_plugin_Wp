@@ -24,10 +24,12 @@ $notifications = [];
 
 //Update pneu
 if (isset($_POST['wheel_model'])) {
+    $brandName = $databaseController->get_brand_by_id($pneu[0]->wheel_brand_id)[0]->brand_name;
+    $model = $brandName . ' ' . $_POST['wheel_width'] . '/' . $_POST['wheel_height'] . 'R' . $_POST['wheel_diameter'] . ' ' . $_POST['wheel_load_index'] . $_POST['wheel_speed'] . ' ' . $_POST['wheel_profile'];
 
     $data = [
         'wheel_guarantee' => $_POST['wheel_guarantee'],
-        'wheel_model' => $_POST['wheel_model'],
+        'wheel_model' => $model,
         'wheel_category' => $_POST['wheel_category'],
         'wheel_subcategory' => $_POST['wheel_subcategory'],
         'wheel_dimension' => $_POST['wheel_dimension'],
@@ -68,7 +70,7 @@ if (isset($_POST['wheel_model'])) {
 
         //update product in woocommerce
         $args = array(
-            'name' => $_POST['wheel_model'],
+            'name' => $model,
             'description' => $_POST['description'],
             'short_description' => $_POST['short_description'],
             'image_id' => $_POST['wheel_image_id'],
@@ -218,14 +220,14 @@ if (isset($_POST['wheel_model'])) {
                 </tr>
 
                 <tr>
-                    <th scope="row"><label for="wheel_use">Utilisation</label></th>
+                    <th scope="row"><label for="wheel_use">Usage</label></th>
                     <td><input type="text" name="wheel_use" id="wheel_use" value="<?php echo $pneu[0]->wheel_use; ?>"></td>
 
                 </tr>
 
 
                 <tr>
-                    <th scope="row"><label for="wheel_winter_mark">Marquage hiver</label></th>
+                    <th scope="row"><label for="wheel_winter_mark">Voiture électrique</label></th>
                     <td><input type="checkbox" name="wheel_winter_mark" id="wheel_winter_mark" value="1" <?php echo $pneu[0]->wheel_winter_mark == 1 ? 'checked' : ''; ?>></td>
 
 
@@ -283,26 +285,34 @@ if (isset($_POST['wheel_model'])) {
 
                 <tr>
                     <th scope="row"><label for="wheel_price">Prix</label></th>
-                    <td><input type="number" name="wheel_price" id="wheel_price" value="<?php echo $pneu[0]->wheel_price; ?>"></td>
-
-                </tr>
-                <tr>
-                    <th><label for="description">description</label>
-                    </th>
                     <td>
-                        <textarea name="description" id="description" cols="30" rows="10"><?php echo $products[0]->get_description(); ?></textarea>
+                        <input type="text" name="wheel_price" id="wheel_price" value="<?php echo  $pneu[0]->wheel_price; ?>">
                     </td>
-                    <th><label for="short_description">description courte</label> </th>
-                    <td>
-                        <textarea name="short_description" id="short_description" cols="30" rows="10"><?php echo $products[0]->get_short_description(); ?></textarea>
-                    </td>
-                    <th><label for="price">prix </label> </th>
 
 
                 </tr>
 
             </tbody>
 
+        </table>
+        <table class="text_table_wheel">
+            <tbody>
+                <tr>
+                    <th><label for="description">description</label>
+                    </th>
+                    <td>
+                        <?php echo $variableController->custom_plugin_text_editor($products[0]->get_description(), "description", "description") ?>
+
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="short_description">description courte</label> </th>
+                    <td>
+                        <?php echo $variableController->custom_plugin_text_editor($products[0]->get_short_description(), "short_description", "short_description") ?>
+
+                    </td>
+                </tr>
+            </tbody>
         </table>
 
         <input type="submit" value="Modifier le pneu" class="button button-primary">
@@ -311,11 +321,27 @@ if (isset($_POST['wheel_model'])) {
 </div>
 
 
+
+<!-- css -->
+<style>
+    .text_table_wheel th {
+        width: 10%;
+    }
+</style>
+
 <!-- JS -->
 <script>
     jQuery(document).ready(function($) {
         const URLBASE = jon_dev_api_url.url;
 
+        //get is number in input text
+        document.getElementById('wheel_price').addEventListener('input', function(e) {
+            e.preventDefault();
+            let value = e.target.value;
+            if (isNaN(value)) {
+                e.target.value = '';
+            }
+        });
 
 
         var custom_uploader;

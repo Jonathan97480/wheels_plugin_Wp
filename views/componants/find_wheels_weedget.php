@@ -21,7 +21,12 @@ function getWidgetWheelsFind($files, $w = 125, $h = 25, $d = 10, $ls = 65, $v = 
 
     /* Slect variable */
     $W = $variableController::pneusWidth;
-    $H = $variableController::pneusHeight;
+    $H = [];
+
+    for ($i = 25; $i <= 100; $i++) {
+        $H[] = $i;
+    }
+
     $R = $variableController::pneusDiameter;
     $LS = $variableController::pneusLoadIndex;
     $V = $variableController::pneusSpeed;
@@ -56,7 +61,7 @@ function getWidgetWheelsFind($files, $w = 125, $h = 25, $d = 10, $ls = 65, $v = 
                             <span class="wheels-info-widget-R">
                                 R
                             </span>
-                            <span class="wheels-info-widget-D" id="wheel_diameter"><? $d ?></span>
+                            <span class="wheels-info-widget-D" id="wheel_diameter"><?= $d ?></span>
                             <span class="wheels-info-widget-LS" id="wheel_lad_index">
                                 <?= $ls ?>
                             </span>

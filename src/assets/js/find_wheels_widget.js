@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
     //rezet color
     function resetColor() {
         console.log('reset color');
-        W.style.color = 'red';
+        W.style.color = 'white';
         H.style.color = 'white';
         D.style.color = 'white';
         LadIndex.style.color = 'white';

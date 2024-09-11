@@ -233,7 +233,7 @@ $quantity = $product->get_stock_quantity();
             </span>
             <span class="whell-info-ligne">
                 <div>
-                    <strong>Marquage Hiver M+S</strong>
+                    <strong>voiture électrique</strong>
                     <span>
                         <?= $wheel->wheel_winter_mark == 1 ? 'Oui' : 'Non' ?>
                     </span>

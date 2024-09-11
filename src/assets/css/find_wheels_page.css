@@ -1,6 +1,6 @@
 @import url("wheels_product_card.css");
 
-.brands-List-containt{
+.brands-List-containt {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -10,20 +10,24 @@
     gap: 20px;
 }
 
-.brands-List-containt-item{
+.brands-List-containt-item {
     width: fit-content;
     height: fit-content;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
 
-.brands-List-containt-item img{
+.brands-List-containt-item:hover {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+.brands-List-containt-item img {
     width: 192px;
     height: 96px;
     margin: 0px;
     object-fit: contain;
 }
 
-.random-pneu-selection-containt{
+.random-pneu-selection-containt {
     display: flex;
     flex-wrap: wrap;
     gap: 14px;

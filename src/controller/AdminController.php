@@ -26,16 +26,16 @@ class AdminController
     {
 
         add_menu_page(
-            'Jon Dev Wheel Check',
-            'Jon Dev Wheel Check',
+            'LOGICAR',
+            'LOGICAR',
             'manage_options',
-            'jon_dev_wheel_check',
+            'LOGICAR',
             [$this, 'render_admin_add_wheel'],
             'dashicons-car',
             6
         );
         add_submenu_page(
-            'jon_dev_wheel_check',
+            'LOGICAR',
             'Ajouter un pneu',
             'Ajouter un pneu',
             'manage_options',
@@ -44,7 +44,7 @@ class AdminController
         );
 
         add_submenu_page(
-            'jon_dev_wheel_check',
+            'LOGICAR',
             'Ajouter une marque',
             'Ajouter une marque',
             'manage_options',
