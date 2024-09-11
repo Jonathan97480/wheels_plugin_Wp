@@ -7,7 +7,7 @@
 1. Téléchargez le fichier zip
 2. Décompressez le fichier zip
 3. Copiez le répertoire `jon_dev_wheel_check` dans le répertoire `/wp-content/plugins/` de votre site WordPress
-4. Allez dans le menu "Extensions" de WordPress et activez le plugin `jon_dev_wheel_check`
+4. Allez dans le menu "Extensions" de WordPress et activez le plugin `Wheel Check`
 5. profitez de votre plugin
 
 ## Fonctionnalité
@@ -26,7 +26,7 @@
 1. Download the zip file
 2. Unzip the zip file
 3. Copy the `jon_dev_wheel_check` directory to the `/wp-content/plugins/` directory of your WordPress site
-4. Go to the WordPress "Extensions" menu and activate the `jon_dev_wheel_check` plugin
+4. Go to the WordPress "Extensions" menu and activate the `Wheel Check` plugin
 5. enjoy your plugin
 
 ## Functionality
